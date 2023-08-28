@@ -3,6 +3,7 @@ import { FaBars } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
 
 const routes = [
+  { title: "Home", url: "/" },
   { title: "About", url: "/about" },
   { title: "Contact", url: "/contact" },
   { title: "Blog", url: "/blog" },
@@ -58,30 +59,20 @@ const Navbar = () => {
       {open && (
         <div className="sm:hidden" id="mobile-menu">
           <div className="space-y-1 px-2 pb-3 pt-2">
-            <a
-              href="#"
-              className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
-            >
-              Dashboard
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-            >
-              Team
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-            >
-              Projects
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-            >
-              Calendar
-            </a>
+            {routes.map((route) => (
+              <Link
+                key={route.url}
+                to={route.url}
+                style={{}}
+                className={`${
+                  location.pathname === route.url
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                } block rounded-md px-3 py-2 text-base font-medium`}
+              >
+                {route.title}
+              </Link>
+            ))}
           </div>
         </div>
       )}
